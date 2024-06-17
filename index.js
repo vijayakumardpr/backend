@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.json("Hello this is the backend");
 });
 
-app.get("/employee", (req, res) => {
+app.get("/users", (req, res) => {
   const q = "SELECT * FROM employee";
   db.query(q, (err, data) => {
     if (err) return res.json(err);
@@ -29,7 +29,7 @@ app.get("/employee", (req, res) => {
   });
 });
 
-app.post("/employee", (req, res) => {
+app.post("/user", (req, res) => {
   const q =
     "INSERT INTO employee (`firstname`,`lastname`,`dob`,`email`,`phone`,`address`,`city`,`state`,`pincode`,`gender`,`terms`) VALUES (?)";
   const values = [
@@ -52,7 +52,7 @@ app.post("/employee", (req, res) => {
   });
 });
 
-app.delete("/employee/:id", (req, res) => {
+app.delete("/users/:id", (req, res) => {
   const personId = req.params.id;
   const q = " DELETE FROM employee WHERE id = ? ";
 
@@ -62,7 +62,7 @@ app.delete("/employee/:id", (req, res) => {
   });
 });
 
-app.get("/view/:id", (req, res) => {
+app.get("/users/:id", (req, res) => {
   const personId = req.params.id;
   const q = " SELECT * FROM employee WHERE id = ? ";
 
@@ -72,7 +72,7 @@ app.get("/view/:id", (req, res) => {
   });
 });
 
-app.put("/update/:id", (req, res) => {
+app.put("/users/:id", (req, res) => {
   const userId = req.params.id;
   const q =
     "UPDATE employee SET `firstname`= ?, `lastname`= ?, `dob`= ?, `email`= ?, `phone`= ? ,`address`= ?, `city`= ?,`state`= ?, `pincode`= ?,`gender`= ?,`terms`= ?  WHERE id = ?";
